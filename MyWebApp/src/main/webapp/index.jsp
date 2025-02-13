@@ -16,6 +16,11 @@
     out.println("Username: " + username);
     out.println("Password: " + password); 
     %>
+String userInput = request.getParameter("user");
+Statement stmt = connection.createStatement();
+String query = "SELECT * FROM users WHERE username = '" + userInput + "'"; // ❌ SQL Injection Risk
+ResultSet rs = stmt.executeQuery(query);
+
 </p>
 </body>
 </html>
