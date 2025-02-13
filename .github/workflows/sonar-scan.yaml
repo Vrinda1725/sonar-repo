@@ -15,22 +15,22 @@
 #       - name: Checkout Repository
 #         uses: actions/checkout@v4
 
-#       - name: Set up JDK 21
-#         uses: actions/setup-java@v4
-#         with:
-#           java-version: '21'
-#           distribution: 'zulu'
-#           cache: maven
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+          cache: maven
+          
+      - name: Run SonarCloud Analysis
+        run: |
+         cd MyWebApp  
+         mvn verify sonar:sonar \
+           -Dsonar.projectKey=vrinda-java \
+           -Dsonar.organization=Vrinda1725 \
+           -Dsonar.host.url=https://sonarcloud.io \
+           -Dsonar.token=$SONAR_TOKEN
 
-#       - name: Run Unit Tests
-#         run: mvn test
-
-#       - name: Run SonarCloud Analysis
-#         run: mvn verify sonar:sonar \
-#           -Dsonar.projectKey=vrinda-java \
-#           -Dsonar.organization=Vrinda1725 \
-#           -Dsonar.host.url=https://sonarcloud.io \
-#           -Dsonar.token=$SONAR_TOKEN
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
