@@ -23,11 +23,14 @@ jobs:
           cache: maven
           
       - name: Run SonarCloud Analysis
-        run: mvn verify sonar:sonar \
-          -Dsonar.projectKey=vrinda-java \
-          -Dsonar.organization=Vrinda1725 \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.token=$SONAR_TOKEN
+        run: |
+         cd MyWebApp  
+         mvn verify sonar:sonar \
+           -Dsonar.projectKey=vrinda-java \
+           -Dsonar.organization=Vrinda1725 \
+           -Dsonar.host.url=https://sonarcloud.io \
+           -Dsonar.token=$SONAR_TOKEN
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
