@@ -21,10 +21,7 @@ jobs:
           java-version: '21'
           distribution: 'zulu'
           cache: maven
-
-      - name: Run Unit Tests
-        run: mvn test
-
+          
       - name: Run SonarCloud Analysis
         run: mvn verify sonar:sonar \
           -Dsonar.projectKey=vrinda-java \
